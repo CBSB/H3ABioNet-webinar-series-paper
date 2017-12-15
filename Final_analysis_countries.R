@@ -99,32 +99,6 @@ international <- setdiff(pres[[4]], consort)
 mapInter <- map_data("world", regions = international) %>%
   mutate(Countries = "International collaborators") 
 
-ggplot() + 
-  geom_polygon(data = mapWorld, aes(x=long, y=lat, group=group), fill = 'seashell1', 
-               color = 'gray50') +
-  geom_polygon(data = mapConsortia, aes(x=long, y=lat, group=group, fill = Countries),  
-               alpha = 1, color = 'gray50') +
-  # geom_polygon(data = mapPresenters,
-  #            aes(x=long, y=lat, group=group, fill = region), alpha=0.5) +
-  geom_polygon(data = mapInter,
-               aes(x=long, y=lat, group=group, fill = Countries), color = 'gray50') +
-  # bordersWorld +
-  # scale_fill_manual(name="Countries", values = c("Presenters" = 'blue', 
-  #                                                "H3ABioNet Consortium" = 'red4', 
-  #                                                "International collaborators" = 'green1')) +
-  geom_point(data = all %>% filter(Type == "Presenter"),
-             aes(x=lon, y=lat, size = count)) +
-  geom_point(data = all %>% filter(Type == "Presenter"),
-             aes(x=lon, y=lat, size = (count + 7)), shape = 1) +
-  geom_label_repel(data = all %>% filter(Type == "Presenter"),
-             aes(x=lon, y=lat, label = paste(Country))) +
-  scale_size("Number of Presenters", breaks = c(5,10), labels = c("1-5", "6-10")) +
-  theme(panel.grid.minor=element_blank(), panel.grid.major=element_blank()) + 
-  theme(axis.ticks = element_blank(), axis.text.x = element_blank(), 
-        axis.text.y = element_blank(), panel.border = element_blank())  + 
-  labs(x=" ", y=" ")
-
-
 # Adding demographic annotations: -----------------------------------------
 
 
@@ -134,7 +108,6 @@ status <- data %>%
   group_by(`Career status`) %>%
   summarise(n = n()) %>%
   mutate(`Percent (%)` = round(n*100/sum(n), 0))
-status
 
 sex <- data %>%
   select(`Sex`) %>%
@@ -142,7 +115,6 @@ sex <- data %>%
   group_by(`Sex`) %>%
   summarise(n = n())  %>%
   mutate(`Percent (%)` = round(n*100/sum(n), 0) )
-sex
 
 mytheme <- gridExtra::ttheme_default(
   core = list(fg_params=list(cex = .75)),
@@ -156,14 +128,8 @@ ggplot() +
                color = 'gray50') +
   geom_polygon(data = mapConsortia, aes(x=long, y=lat, group=group, fill = Countries),  
                alpha = 1, color = 'gray50') +
-  # geom_polygon(data = mapPresenters,
-  #            aes(x=long, y=lat, group=group, fill = region), alpha=0.5) +
   geom_polygon(data = mapInter,
                aes(x=long, y=lat, group=group, fill = Countries), color = 'gray50') +
-  # bordersWorld +
-  # scale_fill_manual(name="Countries", values = c("Presenters" = 'blue', 
-  #                                                "H3ABioNet Consortium" = 'red4', 
-  #                                                "International collaborators" = 'green1')) +
   geom_point(data = all %>% filter(Type == "Presenter"),
              aes(x=lon, y=lat, size = count)) +
   geom_point(data = all %>% filter(Type == "Presenter"),
