@@ -149,7 +149,7 @@ mytheme <- gridExtra::ttheme_default(
   colhead = list(fg_params=list(cex = 0.75)),
   rowhead = list(fg_params=list(cex = 0.75)))
 
-jpeg("Demographics of Webinars presenters.jpeg", width = 900, height = 600, quality = 100)
+jpeg("Demographics of Webinars presenters.jpeg", width = 850, height = 550, quality = 100)
 
 ggplot() + 
   geom_polygon(data = mapWorld, aes(x=long, y=lat, group=group), fill = 'seashell1', 
@@ -175,7 +175,7 @@ ggplot() +
   theme(axis.ticks = element_blank(), axis.text.x = element_blank(), 
         axis.text.y = element_blank(), panel.border = element_blank())  + 
   labs(x=" ", y=" ") +
-  annotation_custom(tableGrob(sex, theme = mytheme), xmin=-165, xmax=-150, ymin=-60, ymax=20) +
-  annotation_custom(tableGrob(status, theme = mytheme), xmin=-175, xmax=-100, ymin=-110, ymax=10)
+  annotation_custom(tableGrob(sex, theme = mytheme), xmin=-165, xmax=-150, ymin=-30, ymax=20) +
+  annotation_custom(tableGrob(status, theme = mytheme), xmin=-175, xmax=-100, ymin=-60, ymax=0)
 
 dev.off()
