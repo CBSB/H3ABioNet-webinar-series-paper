@@ -5,4 +5,8 @@ Namely, note:
 
 `functions.R` : Does the loading of needed libraries, and contains functions definitions for the plots
 
-`Final_analysis_countries.R`: The code to reproduce the presenter's map. A sample map figure is also included in this folder
+`Final_analysis_countries.R`: The code to reproduce the presenters' map. An example is below. 
+
+<img src= Map.jpeg width="700">
+
+`Final_analysis_plotting.R`: The code for the rest of the figures in the manuscript
